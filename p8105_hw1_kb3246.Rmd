@@ -80,7 +80,7 @@ mean(pull(problem2_df, character_y))
 mean(pull(problem2_df, factor_z))
 ```
 
-When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. 
+When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. However, mathematically, this wouldn't mean anything since we technically cannot take an average of a Boolean variable. 
 
 ### Taking means for the converted variables (using the `as.numeric` function)
 
@@ -91,7 +91,3 @@ mean(pull(problem2_df, factor_znum))
 ```
 
 After using the `as.numeric` function, I see that the factor vectors and character vectors are behaving like a numeric value and hence it gives me a mean value without any errors/warnings. The logic vector however, gives me the same value since it behaved like a numeric value even prior to coercing it to one.
-
-
-
-
