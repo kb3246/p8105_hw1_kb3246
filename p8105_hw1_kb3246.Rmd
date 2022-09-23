@@ -1,0 +1,32 @@
+---
+title: "Data Science HW-1"
+author: "Kasturi Bhamidipati"
+date: "2022-09-17"
+output: github_document
+---
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(skimr)
+```
+
+# Problem 1
+
+```{r }
+data("penguins", package = "palmerpenguins")
+```
+
+This is the Penguins data set: 
+
+`r skim(penguins)`
+
+- It has three factor variables, species, island and sex, and five numeric variables, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g and year. 
+
+- Three species of penguins were studied in this dataset, Adelie, Gentoo and Chinstrap, across three     islands, Torgersen, Dream and Biscoe.
+
+- Data was collected across the years 2007-2009.
+
+- It has `r nrow(penguins)` observations and `r ncol(penguins)` variables, i.e., a total of 344 penguins were studied and data across 8 different aspects were collected for each penguin.
+
+- The mean flipper length is `r round(mean(penguins$flipper_length_mm, na.rm=TRUE),2)`mm. 
