@@ -82,6 +82,8 @@ mean(pull(problem2_df, factor_z))
 
 When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. However, mathematically, this wouldn't mean anything since it doesn't make sense to take an average of a Boolean variable. 
 
+Another interesting thing is that R will automatically read logical vectors as numeric when we use numeric functions on them. However, it does not do so for the other vector types- factor and character vectors. 
+
 ### Taking means for the converted variables (using the `as.numeric` function)
 
 ```{r for means after coercion, results='hide'}
@@ -90,4 +92,4 @@ mean(pull(problem2_df, character_ynum))
 mean(pull(problem2_df, factor_znum))
 ```
 
-After using the `as.numeric` function, I see that the factor vectors and logic vectors are behaving like a numeric value and hence it gives me a mean value. However, the character vector does not give me a mean value and instead gives me an error that reads: " NAs introduced by coercion". This tells us that not all variable types can be coerced into behaving like another variable type. Another important thing to note would be whether coercing variables into a different type would actually produce meaningful results. 
+After using the `as.numeric` function, I see that the factor vectors and logic vectors are behaving like a numeric value and hence it gives me a mean value. However, the character vector does not give me a mean value and instead gives me an error that reads: " NAs introduced by coercion". This tells us that not all variable types can be coerced into behaving like another variable type. 
