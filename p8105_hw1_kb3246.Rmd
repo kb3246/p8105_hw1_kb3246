@@ -7,7 +7,7 @@ output: github_document
 
 First, we will load packages that are necessary to run this code! 
 
-```{r, results='hide'}
+```{r}
 library(tidyverse)
 library(palmerpenguins)
 library(skimr)
@@ -17,11 +17,11 @@ library(skimr)
 
 ### Summary of the dataset: 
 
-```{r }
+```{r for loading penguin dataset }
 data("penguins", package = "palmerpenguins")
 ```
 
-This is the Penguins data set: 
+This is the `penguins` data set: 
 
 `r skim(penguins)`
 
@@ -39,7 +39,7 @@ This is the Penguins data set:
 
 Here we have the scatter plot: 
   
-```{r, warning=FALSE}
+```{r for the scatterplot, warning=FALSE}
 ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color= species))+geom_point()
 ggsave("scatterplot_penguins.pdf")
 ```
@@ -58,12 +58,12 @@ Creating the dataframe as per the problem requirement:
 - I also created variables using the `as.numeric` function within this dataframe to answer the questions within this problem
 
 
-```{r}
+```{r for the dataframe}
 problem2_df = 
   tibble(
      x = rnorm(n=10), 
     logic_x = x>0,
-    character_y = c("1", "2", "3", "4", "5","6","7","8","9","10"),
+    character_y = c("one", "two", "three", "four", "five","six","seven","eight","nine","ten"),
     factor_z = factor(c("low", "medium", "high", "medium", "low", "low", "high", "medium", "high", "high")),
     logic_xnum = as.numeric(logic_x),
     character_ynum = as.numeric(character_y),
@@ -73,21 +73,21 @@ problem2_df =
 
 ### Taking the mean of each variable 
 
-```{r}
+```{r for means}
 mean(pull(problem2_df, x))
 mean(pull(problem2_df, logic_x))
 mean(pull(problem2_df, character_y))
 mean(pull(problem2_df, factor_z))
 ```
 
-When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. However, mathematically, this wouldn't mean anything since we technically cannot take an average of a Boolean variable. 
+When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. However, mathematically, this wouldn't mean anything since it doesn't make sense to take an average of a Boolean variable. 
 
 ### Taking means for the converted variables (using the `as.numeric` function)
 
-```{r, results='hide'}
+```{r for means after coercion, results='hide'}
 mean(pull(problem2_df, logic_xnum))
 mean(pull(problem2_df, character_ynum))
 mean(pull(problem2_df, factor_znum))
 ```
 
-After using the `as.numeric` function, I see that the factor vectors and character vectors are behaving like a numeric value and hence it gives me a mean value without any errors/warnings. The logic vector however, gives me the same value since it behaved like a numeric value even prior to coercing it to one.
+After using the `as.numeric` function, I see that the factor vectors and logic vectors are behaving like a numeric value and hence it gives me a mean value. However, the character vector does not give me a mean value and instead gives me an error that reads: " NAs introduced by coercion". This tells us that not all variable types can be coerced into behaving like another variable type. Another important thing to note would be whether coercing variables into a different type would actually produce meaningful results. 
