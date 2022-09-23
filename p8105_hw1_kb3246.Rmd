@@ -13,6 +13,8 @@ library(skimr)
 
 # Problem 1
 
+### Summary of the dataset: 
+
 ```{r }
 data("penguins", package = "palmerpenguins")
 ```
@@ -30,3 +32,13 @@ This is the Penguins data set:
 - It has `r nrow(penguins)` observations and `r ncol(penguins)` variables, i.e., a total of 344 penguins were studied and data across 8 different aspects were collected for each penguin.
 
 - The mean flipper length is `r round(mean(penguins$flipper_length_mm, na.rm=TRUE),2)`mm. 
+
+### Scatterplot: 
+
+Here we have the scatter plot: 
+  
+  ```{r, warning=FALSE}
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color= species))+geom_point()
+ggsave("scatterplot_penguins.pdf")
+```
+
