@@ -1,9 +1,11 @@
 ---
 title: "Data Science HW-1"
 author: "Kasturi Bhamidipati"
-date: "2022-09-17"
+date: "09/23/2022"
 output: github_document
 ---
+
+First, we will load packages that are necessary to run this code! 
 
 ```{r, echo=FALSE}
 library(tidyverse)
@@ -41,4 +43,41 @@ Here we have the scatter plot:
 ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color= species))+geom_point()
 ggsave("scatterplot_penguins.pdf")
 ```
+
+
+# Problem 2
+
+### Creating the dataframe 
+
+Creating the dataframe as per the problem requirement: 
+
+- x: a random sample of size 10 from a standard Normal distribution
+- logic_x: indicates whether elements of the sample are greater than 0
+- character_y: character vector of length 10
+- factor_z: factor vector of length 10, with 3 different factor “levels”; high, medium and low
+
+
+```{r}
+problem2_df = 
+  tibble(
+     x = rnorm(n=10), 
+    logic_x = x>0,
+    character_y = c("1", "2", "3", "4", "5","6","7","8","9","10"),
+    factor_z = factor(c("low", "high", "medium", "medium", "low", "low", "high", "medium", "high", "high"))
+  )
+```
+
+### Taking the mean of each variable 
+
+```{r}
+mean(pull(problem2_df, x))
+mean(pull(problem2_df, logic_x))
+mean(pull(problem2_df, character_y))
+mean(pull(problem2_df, factor_z))
+```
+
+When I try taking the means for my variables, I get warning messages for both the character variable and the factor variable. However, for the logical variable, since it is a Boolean operator that is indicating whether the elements in my sample are greater than zero, by using 0s and 1s (TRUE/FALSE), it is able to calculate the mean. 
+
+
+
 
